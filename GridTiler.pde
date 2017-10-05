@@ -121,7 +121,7 @@ class GridTiler implements XMLLoadable
         }
         else
         {
-          String[] names = {"metal2x2-0x50 copy.png","grass2x2-0x50.png","hair2x2-0x50.png"};
+          String[] names = {"metal2x2-0x50 copy.png","grass2x2-0x50.png"};
           int rndIndex = (int)(random(names.length));
           tile = new PNGGridTile(new int[]{x,y}, new int[]{2,2}, new float[]{0,50},names[rndIndex] );
         }
@@ -141,7 +141,7 @@ class GridTiler implements XMLLoadable
         }
         else
         {
-          String[] names = {"pants1x1-0x25.png","corn1x1-0x25.png"};
+          String[] names = {"corn1x1-0x25.png"};
           int rndIndex = (int)(random(names.length));
           tile = new PNGGridTile(new int[]{x,y}, new int[]{1,1}, new float[]{0,25},names[rndIndex] );
         }
