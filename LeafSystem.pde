@@ -67,14 +67,14 @@ class LeafSystem {
     }
     
     void draw() {
-      pushMatrix();
-        pushStyle();
-          translate(pt.x, pt.y);
-          tint(c);
-          rotate(rad);
-          image(img, 0, 0, leaf_img_sz, leaf_img_sz);
-        popStyle();
-      popMatrix();
+      dg.pushMatrix();
+        dg.pushStyle();
+          dg.translate(pt.x, pt.y);
+          dg.tint(c);
+          dg.rotate(rad);
+          dg.image(img, 0, 0, leaf_img_sz, leaf_img_sz);
+        dg.popStyle();
+      dg.popMatrix();
       
     }
     
@@ -224,13 +224,13 @@ class LeafSystem {
   }
   
   void displaySpawnData(){
-    pushMatrix();
+    dg.pushMatrix();
       if (!DEBUG_MODE) {
-        translate(0,height);
-        rotate(-PI/2);
+        dg.translate(0,height);
+        dg.rotate(-PI/2);
       }
-      image(pg, 0, 0);
-    popMatrix();
+      dg.image(pg, 0, 0);
+    dg.popMatrix();
   }
   
   Point getRandomSpawnPoint() {
@@ -261,26 +261,26 @@ class LeafSystem {
   
   //render the leaf system
   void draw() {
-    pushMatrix();
+    dg.pushMatrix();
 
     if (!DEBUG_MODE) {
-      translate(0,height);
-      rotate(-PI/2);
+      dg.translate(0,height);
+      dg.rotate(-PI/2);
     }
     
     try{
       //println("drawing leaves.");
-      imageMode(CENTER);
+      dg.imageMode(CENTER);
       for (Leaf l : leaves) {
         l.draw();
       }
-      imageMode(CORNER);
+      dg.imageMode(CORNER);
     }
     catch(Exception e)
     {
 //      println(this.getClass() + ":draw: " + e);
     }
-    popMatrix();
+    dg.popMatrix();
   }
   
   

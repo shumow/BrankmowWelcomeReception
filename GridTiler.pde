@@ -7,8 +7,6 @@ boolean populate_tiles = true;
 //***************************************************************
 class GridTiler implements XMLLoadable
 {
-
-  
   protected float[] xAxis = {20,5};
   protected float[] yAxis = {5,20};
   protected float[] origin = {0,0};
@@ -201,29 +199,29 @@ class GridTiler implements XMLLoadable
   //***************************************************************
   void draw()
   {
-    pushMatrix();
-    translate(origin[0],origin[1]);
+    dg.pushMatrix();
+    dg.translate(origin[0],origin[1]);
 //    background(255,0,0);
     for(BaseGridTile tile : xmlTiles)
     {
-      pushMatrix();
-      translate(tile.position[0]*xAxis[0] + tile.position[1]*yAxis[0], 
+      dg.pushMatrix();
+      dg.translate(tile.position[0]*xAxis[0] + tile.position[1]*yAxis[0], 
                 tile.position[0]*xAxis[1] + tile.position[1]*yAxis[1]);
       tile.draw();
 //println("tile.position: " + tile.position[0] + ", " + tile.position[1]);
-      popMatrix();
+      dg.popMatrix();
     }
     
     for(BaseGridTile tile : genTiles)
     {
-      pushMatrix();
-      translate(tile.position[0]*xAxis[0] + tile.position[1]*yAxis[0], 
+      dg.pushMatrix();
+      dg.translate(tile.position[0]*xAxis[0] + tile.position[1]*yAxis[0], 
                 tile.position[0]*xAxis[1] + tile.position[1]*yAxis[1]);
       tile.draw();
 //println("tile.position: " + tile.position[0] + ", " + tile.position[1]);
-      popMatrix();
+      dg.popMatrix();
     }
-    popMatrix();
+    dg.popMatrix();
   }
  
 

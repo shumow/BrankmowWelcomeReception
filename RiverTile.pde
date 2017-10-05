@@ -49,13 +49,13 @@ class RiverLineParticle
   }
   void draw()
   {
-    pushStyle();
-    stroke(clr);
-    strokeWeight(lineW);
-    strokeCap(SQUARE);
-    line(-len*dir[0], -len*dir[1], 
-    +len*dir[0], +len*dir[1]);
-    popStyle();
+    dg.pushStyle();
+    dg.stroke(clr);
+    dg.strokeWeight(lineW);
+    dg.strokeCap(SQUARE);
+    dg.line(-len*dir[0], -len*dir[1], 
+            +len*dir[0], +len*dir[1]);
+    dg.popStyle();
   }
 }
 
@@ -111,31 +111,28 @@ class RiverTile extends ProceduralAnimatedGridTile
   public void draw()
   {
     float[][] bases = gridTiles.getBasisVectors();
-    pushStyle();
-    noStroke();
-    fill(100, 100, 200+55*sin(-millis()/5000.f -position[0]/4+position[1]));
-    beginShape(TRIANGLE_STRIP);
-    vertex(0, 0);
-    vertex(bases[0][0], 
-    bases[0][1]);       
+    dg.pushStyle();
+    dg.noStroke();
+    dg.fill(100, 100, 200+55*sin(-millis()/5000.f -position[0]/4+position[1]));
+    dg.beginShape(TRIANGLE_STRIP);
+    dg.vertex(0, 0);
+    dg.vertex(bases[0][0], bases[0][1]);       
 
-    vertex(bases[1][0], 
-    bases[1][1]);
-    vertex(bases[0][0] + bases[1][0], 
-    bases[0][1] + bases[1][1]); 
-    endShape();
+    dg.vertex(bases[1][0], bases[1][1]);
+    dg.vertex(bases[0][0] + bases[1][0], bases[0][1] + bases[1][1]); 
+    dg.endShape();
 
-    popStyle();
+    dg.popStyle();
     for (RiverLineParticle r : riverLineParticles)
     {
-      pushMatrix();
+      dg.pushMatrix();
       float[] grdSpc = {
         r.pos[0]*bases[0][0] + r.pos[1]*bases[1][0], 
         r.pos[0]*bases[0][1] + r.pos[1]*bases[1][1]
       };
-      translate(grdSpc[0], grdSpc[1]);
+      dg.translate(grdSpc[0], grdSpc[1]);
       r.draw(); 
-      popMatrix();
+      dg.popMatrix();
     }
   }
 

@@ -70,9 +70,9 @@ class BaseGridTile implements XMLLoadable
   //***************************************************************
   public void draw()
   {
-    pushStyle();
+    dg.pushStyle();
     
-    popStyle();
+    dg.popStyle();
   }
   
   //***************************************************************

@@ -50,77 +50,77 @@ class GridTool extends GridTiler
   {
     super.draw();
     int graphRange[] = {-20,20};
-    pushMatrix();
-    translate(origin[0],origin[1]);
+    dg.pushMatrix();
+    dg.translate(origin[0],origin[1]);
     //draw x axis markers
-    stroke(0,255,0);
+    dg.stroke(0,255,0);
     for(int i = graphRange[0]; i < graphRange[1]+1; i++)
     {
 //      println(i + " skajdhaskj " + (yAxis[0] * i + graphRange[0] * xAxis[0]) + ", " + (yAxis[1] * i + graphRange[0] * xAxis[1]) );
 //      println(i + " sdetijlkmn " + ( yAxis[0] * i + graphRange[1] * xAxis[0]) + ", " + (yAxis[1] * i + graphRange[1] * xAxis[1]) );
-      beginShape(LINES);
-      vertex( yAxis[0] * i + graphRange[0] * xAxis[0], 
-              yAxis[1] * i + graphRange[0] * xAxis[1]);
+      dg.beginShape(LINES);
+      dg.vertex( yAxis[0] * i + graphRange[0] * xAxis[0], 
+                 yAxis[1] * i + graphRange[0] * xAxis[1]);
                
-      vertex( yAxis[0] * i + graphRange[1] * xAxis[0], 
-              yAxis[1] * i + graphRange[1] * xAxis[1]);
-      endShape();
+      dg.vertex( yAxis[0] * i + graphRange[1] * xAxis[0], 
+                 yAxis[1] * i + graphRange[1] * xAxis[1]);
+      dg.endShape();
     }
     //draw y axis markers
-    stroke(255,0,0);
+    dg.stroke(255,0,0);
     for(int i = graphRange[0]; i < graphRange[1]+1; i++)
     {
 //      println(i + " 3333 " + (xAxis[0] * i + graphRange[0] * yAxis[0]) + ", " + (xAxis[1] * i + graphRange[0] * yAxis[1]) );
 //      println(i + " 3333 " + (xAxis[0] * i + graphRange[1] * yAxis[0]) + ", " + (xAxis[1] * i + graphRange[1] * yAxis[1]) );
-      beginShape(LINES);
-      vertex( xAxis[0] * i + graphRange[0] * yAxis[0], 
-              xAxis[1] * i + graphRange[0] * yAxis[1]);
+      dg.beginShape(LINES);
+      dg.vertex( xAxis[0] * i + graphRange[0] * yAxis[0], 
+                 xAxis[1] * i + graphRange[0] * yAxis[1]);
                 
-      vertex( xAxis[0] * i + graphRange[1] * yAxis[0], 
-              xAxis[1] * i + graphRange[1] * yAxis[1]);
-      endShape();
+      dg.vertex( xAxis[0] * i + graphRange[1] * yAxis[0], 
+                 xAxis[1] * i + graphRange[1] * yAxis[1]);
+      dg.endShape();
     }
     
     //draw Labels
-    stroke(0);
-    fill(0);
-    textSize(10);
+    dg.stroke(0);
+    dg.fill(0);
+    dg.textSize(10);
     for(int i = graphRange[0]; i < graphRange[1]+1; i++)
     {
       for(int j = graphRange[0]; j < graphRange[1]+1; j++)
       {
-        pushMatrix();
+        dg.pushMatrix();
         String posString = ""+ i + "," + j; 
-        translate((i+.5)*xAxis[0]+(j+.5)*yAxis[0], 
+        dg.translate((i+.5)*xAxis[0]+(j+.5)*yAxis[0], 
                      (i+.5)*xAxis[1]+(j+.5)*yAxis[1]);
-        if(DEBUG_MODE){rotate(-PI/2); translate(-14,0);}        
-        text(posString,0,0 );
-        popMatrix();
+        if(DEBUG_MODE){dg.rotate(-PI/2); dg.translate(-14,0);}        
+        dg.text(posString,0,0 );
+        dg.popMatrix();
       }
     }
-    popMatrix();
+    dg.popMatrix();
     
     
-    fill(255);
-    textSize(50);
-    pushMatrix();
-      translate(70,height/2+ 200);
-      rotate(-PI/2);
-      text("TOP OF CANVAS",0,0);
-    popMatrix();
+    dg.fill(255);
+    dg.textSize(50);
+    dg.pushMatrix();
+      dg.translate(70,height/2+ 200);
+      dg.rotate(-PI/2);
+      dg.text("TOP OF CANVAS",0,0);
+    dg.popMatrix();
     
-   pushMatrix();
+   dg.pushMatrix();
      if(DEBUG_MODE)
      {
-       translate(height,height/2 + 200);
+       dg.translate(height,height/2 + 200);
      }
      else
      { 
-       translate(width,height/2 + 200);
+       dg.translate(width,height/2 + 200);
      }
-     rotate(-PI/2);
-     text("BASE OF CANVAS",0,0);
-   popMatrix();
+     dg.rotate(-PI/2);
+     dg.text("BASE OF CANVAS",0,0);
+   dg.popMatrix();
   }
   
 
@@ -173,7 +173,7 @@ class GridTool extends GridTiler
           buffer.endDraw();
   //        buffer.save("sakdjha.png");
           buffer.save("sizes/"+x+"x"+y+"-" + int(-boundingBox[0]) + "x"  + int(-boundingBox[1]) + ".png");
-          image(buffer,random(width),random(height));
+          dg.image(buffer,random(width),random(height));
         }
       }  
     }

@@ -64,10 +64,10 @@ class PNGGridTile extends BaseGridTile
   public void draw()
   {
     //fill me in
-    pushStyle();
-    tint(tintColor);
-    image(img, -offset[0], -offset[1]);
-    popStyle();
+    dg.pushStyle();
+    dg.tint(tintColor);
+    dg.image(img, -offset[0], -offset[1]);
+    dg.popStyle();
   }
   
   

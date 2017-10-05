@@ -25,11 +25,11 @@ class ProceduralAnimatedGridTile extends AnimatedGridTile
   //***************************************************************
   public void draw()
   {
-    pushStyle();
+    dg.pushStyle();
     //fill me in
-    fill(tileColor);
-    rect(0,0,40,40);
-    popStyle();
+    dg.fill(tileColor);
+    dg.rect(0,0,40,40);
+    dg.popStyle();
   }
   
   //***************************************************************

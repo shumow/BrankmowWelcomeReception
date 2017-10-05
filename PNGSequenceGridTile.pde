@@ -26,9 +26,9 @@ class PNGSequenceGridTile extends AnimatedGridTile
   //***************************************************************
   public void draw()
   {
-    pushStyle();
+    dg.pushStyle();
     
-    popStyle();
+    dg.popStyle();
     //fill me in
   }
   

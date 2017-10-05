@@ -21,6 +21,8 @@ static LeafSystem leafs;
 
 RadialTileChanger tileChanger;
 
+static PGraphics dg;
+
 //FluidMotionReceiver fmr;
 //***************************************************************
 // called to set everything up
@@ -34,6 +36,9 @@ void setup()
   if (!DEBUG_MODE) {
     noCursor();
   }
+  
+  dg = g;
+  
   XML xml = loadXML("GridTiler.xml");
   if(DEBUG_MODE)
   { gridTiles = new GridTool(xml);}//new float[]{width/2,height/2},50, PI/3, 2*PI/3.f);
@@ -55,38 +60,38 @@ void setup()
 
 void drawTree()
 {
-  pushMatrix();
+  dg.pushMatrix();
   if(DEBUG_MODE)
   { 
-    translate(0,width);
+    dg.translate(0,width);
   } else { 
-    translate(0,height);
+    dg.translate(0,height);
   }
-  rotate(-PI/2);
+  dg.rotate(-PI/2);
   
-  pushStyle();
-  imageMode(CORNER);
-  image(imgTree, 0, 0);
-  popStyle();  
-  popMatrix();
+  dg.pushStyle();
+  dg.imageMode(CORNER);
+  dg.image(imgTree, 0, 0);
+  dg.popStyle();  
+  dg.popMatrix();
 }
 
 void drawSilhouette()
 {
-  pushMatrix();
+  dg.pushMatrix();
   if(DEBUG_MODE)
   { 
-    translate(0,width);
+    dg.translate(0,width);
   } else { 
-    translate(0,height);
+    dg.translate(0,height);
   }
-  rotate(-PI/2);
+  dg.rotate(-PI/2);
   
-  pushStyle();
-  imageMode(CORNER);
-  image(imgSilhouette, 0, 0);
-  popStyle();  
-  popMatrix();
+  dg.pushStyle();
+  dg.imageMode(CORNER);
+  dg.image(imgSilhouette, 0, 0);
+  dg.popStyle();  
+  dg.popMatrix();
 }
 
 
@@ -96,16 +101,16 @@ void drawSilhouette()
 //***************************************************************
 void draw()
 {
-  pushStyle();
-  fill(0,0,0,90);
-  rect(0,0,width,height);
-  popStyle();
+  dg.pushStyle();
+  dg.fill(0,0,0,90);
+  dg.rect(0,0,width,height);
+  dg.popStyle();
   
   if(DEBUG_MODE)
   { 
-    pushMatrix();
-    translate(width,0);
-    rotate(PI/2);
+    dg.pushMatrix();
+    dg.translate(width,0);
+    dg.rotate(PI/2);
   }
 
   float secondsSinceLastUpdate = (millis()-lastEndTick)/1000.f;
@@ -125,7 +130,7 @@ void draw()
   }
 
   if (DEBUG_MODE) {
-    popMatrix();
+    dg.popMatrix();
   }
     
   if (edit_mode || display_leaf_system) {
@@ -137,10 +142,10 @@ void draw()
   }
   
   if (crop_line || draw_crop_line) {
-    pushStyle();
-    stroke(255,0,0);
-    line(cropX,0,cropX,height);
-    popStyle();
+    dg.pushStyle();
+    dg.stroke(255,0,0);
+    dg.line(cropX,0,cropX,height);
+    dg.popStyle();
   }
 }
 
@@ -178,7 +183,7 @@ void mouseMoved() {
 
 void saveScreenToPicture()
 {
-  save("screenCap/fallingLeaves-"+year()+"-"+month()+"-"+day()+":"+hour()+":"+minute()+":"+second()+":"+millis() +".png");
+  dg.save("screenCap/fallingLeaves-"+year()+"-"+month()+"-"+day()+":"+hour()+":"+minute()+":"+second()+":"+millis() +".png");
 }
 
 

@@ -40,17 +40,17 @@ class SkyTile extends ProceduralAnimatedGridTile
   public void draw()
   {
     float[][] bases = gridTiles.getBasisVectors();
-    pushStyle();
-    noStroke();
-    fill(tileColor);
-    beginShape(TRIANGLE_STRIP);
-      vertex(0, 0);
-      vertex(bases[0][0], bases[0][1]);
-      vertex(bases[1][0], bases[1][1]);
-      vertex(bases[0][0] + bases[1][0], bases[0][1] + bases[1][1]); 
-    endShape();
+    dg.pushStyle();
+    dg.noStroke();
+    dg.fill(tileColor);
+    dg.beginShape(TRIANGLE_STRIP);
+      dg.vertex(0, 0);
+      dg.vertex(bases[0][0], bases[0][1]);
+      dg.vertex(bases[1][0], bases[1][1]);
+      dg.vertex(bases[0][0] + bases[1][0], bases[0][1] + bases[1][1]); 
+    dg.endShape();
 
-    popStyle();
+    dg.popStyle();
   }
   
   //***************************************************************

@@ -67,22 +67,22 @@ pg.tint(tintColor);
     //Temporary
     
     float[][] bases = gridTiles.getBasisVectors();
-    pushStyle();
-      fill(random(255),0,0);
-      textureMode(NORMAL); //use tex coord 0-1
-      noStroke();
-      beginShape(TRIANGLE_STRIP);
-      texture(pg);
-      vertex(0,0,0,0);
-      vertex(bases[0][0]*size[0],
-             bases[0][1]*size[0],1,0);       
+    dg.pushStyle();
+      dg.fill(random(255),0,0);
+      dg.textureMode(NORMAL); //use tex coord 0-1
+      dg.noStroke();
+      dg.beginShape(TRIANGLE_STRIP);
+      dg.texture(pg);
+      dg.vertex(0,0,0,0);
+      dg.vertex(bases[0][0]*size[0],
+                bases[0][1]*size[0],1,0);       
              
-      vertex(bases[1][0]*size[1],
-             bases[1][1]*size[1],0,1);
-      vertex(bases[0][0]*size[0] + bases[1][0]*size[1],
-             bases[0][1]*size[0] + bases[1][1]*size[1],1,1); 
-      endShape();
-    popStyle();
+      dg.vertex(bases[1][0]*size[1],
+                bases[1][1]*size[1],0,1);
+      dg.vertex(bases[0][0]*size[0] + bases[1][0]*size[1],
+                bases[0][1]*size[0] + bases[1][1]*size[1],1,1); 
+      dg.endShape();
+    dg.popStyle();
   }
   
   //***************************************************************
