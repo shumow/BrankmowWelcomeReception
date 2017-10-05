@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<GridTiler scale="100">
+    <xAxis x="0.8660254" y="0.5" />
+    <yAxis x="0.8660254" y="-0.5" />
+    <origin x="400" y="300" />
+    <Tiles>
+        <RiverTile x="-1" y="-5" to="LR" from="UL" />
+        <RiverTile x="-1" y="-4" to="LR" from="UL" />
+        <RiverTile x="-1" y="-3" to="LR" from="UL" />
+        <RiverTile x="-1" y="-2" to="LR" from="UL" />
+        <RiverTile x="-1" y="-1" to="LR" from="UL" />
+        <RiverTile x="-1" y="0" to="LL" from="UL" />
+        <RiverTile x="0" y="0" to="LL" from="UR" />
+        <RiverTile x="1" y="0" to="LR" from="UR" />
+        <RiverTile x="1" y="1" to="LR" from="UL" />
+        <RiverTile x="1" y="2" to="LR" from="UL" />
+        
+        <RiverTile x="0" y="-6" to="LR" from="UL" />
+        <RiverTile x="0" y="-5" to="LR" from="UL" />
+        <RiverTile x="0" y="-4" to="LR" from="UL" />
+        <RiverTile x="0" y="-3" to="LR" from="UL" />
+        <RiverTile x="0" y="-2" to="LR" from="UL" />
+        <RiverTile x="0" y="-1" to="LL" from="UL" />
+        <RiverTile x="1" y="-1" to="LL" from="UR" />
+        <RiverTile x="2" y="-1" to="LR" from="UR" />
+        <RiverTile x="2" y="0" to="LR" from="UL" />
+        <RiverTile x="2" y="1" to="LR" from="UL" />
+        
+    </Tiles>
+</GridTiler>
