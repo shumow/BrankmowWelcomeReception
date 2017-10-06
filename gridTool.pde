@@ -93,7 +93,7 @@ class GridTool extends GridTiler
         String posString = ""+ i + "," + j; 
         dg.translate((i+.5)*xAxis[0]+(j+.5)*yAxis[0], 
                      (i+.5)*xAxis[1]+(j+.5)*yAxis[1]);
-        if(DEBUG_MODE){dg.rotate(-PI/2); dg.translate(-14,0);}        
+        if(!ROTATE_DISPLAY){dg.rotate(-PI/2); dg.translate(-14,0);}        
         dg.text(posString,0,0 );
         dg.popMatrix();
       }
@@ -110,7 +110,7 @@ class GridTool extends GridTiler
     dg.popMatrix();
     
    dg.pushMatrix();
-     if(DEBUG_MODE)
+     if(!ROTATE_DISPLAY)
      {
        dg.translate(height,height/2 + 200);
      }

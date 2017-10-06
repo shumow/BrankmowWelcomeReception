@@ -3,6 +3,7 @@
 //falling leaves app
 //***************************************************************
 final boolean DEBUG_MODE = true;
+final boolean ROTATE_DISPLAY = false;
 static boolean display_tree = true;
 static PImage imgTree = null;
 static PImage imgSilhouette = null; 
@@ -29,7 +30,7 @@ static PGraphics dg;
 //***************************************************************
 void setup()
 {
-  if(DEBUG_MODE)
+  if(!ROTATE_DISPLAY)
   { size(600,800,P2D); }
   else
   { size(800,600,P2D); }//we are dealing with a 800x600 native res projector
@@ -61,7 +62,7 @@ void setup()
 void drawTree()
 {
   dg.pushMatrix();
-  if(DEBUG_MODE)
+  if(!ROTATE_DISPLAY)
   { 
     dg.translate(0,width);
   } else { 
@@ -79,7 +80,7 @@ void drawTree()
 void drawSilhouette()
 {
   dg.pushMatrix();
-  if(DEBUG_MODE)
+  if(!ROTATE_DISPLAY)
   { 
     dg.translate(0,width);
   } else { 
@@ -106,7 +107,7 @@ void draw()
   dg.rect(0,0,width,height);
   dg.popStyle();
   
-  if(DEBUG_MODE)
+  if(!ROTATE_DISPLAY)
   { 
     dg.pushMatrix();
     dg.translate(width,0);
@@ -129,7 +130,7 @@ void draw()
     drawSilhouette(); 
   }
 
-  if (DEBUG_MODE) {
+  if (!ROTATE_DISPLAY) {
     dg.popMatrix();
   }
     

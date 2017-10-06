@@ -55,7 +55,7 @@ class LeafSystem {
       falling = false;
       offScreen = false;
       
-      if (DEBUG_MODE) {
+      if (!ROTATE_DISPLAY) {
         leaf_bound = height;
       } else {
         leaf_bound = width;
@@ -114,7 +114,7 @@ class LeafSystem {
 
   void drawBackgroundImg() {
     pg.pushMatrix();
-    if(DEBUG_MODE)
+    if(!ROTATE_DISPLAY)
     { 
       pg.translate(0,width);
       pg.rotate(-PI/2);
@@ -225,7 +225,7 @@ class LeafSystem {
   
   void displaySpawnData(){
     dg.pushMatrix();
-      if (!DEBUG_MODE) {
+      if (ROTATE_DISPLAY) {
         dg.translate(0,height);
         dg.rotate(-PI/2);
       }
@@ -263,7 +263,7 @@ class LeafSystem {
   void draw() {
     dg.pushMatrix();
 
-    if (!DEBUG_MODE) {
+    if (ROTATE_DISPLAY) {
       dg.translate(0,height);
       dg.rotate(-PI/2);
     }
