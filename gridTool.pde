@@ -83,7 +83,7 @@ class GridTool extends GridTiler
     
     //draw Labels
     dg.stroke(0);
-    dg.fill(0);
+    dg.fill(color(255,255,255));
     dg.textSize(10);
     for(int i = graphRange[0]; i < graphRange[1]+1; i++)
     {

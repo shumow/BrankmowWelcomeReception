@@ -24,6 +24,9 @@ RadialTileChanger tileChanger;
 
 static PGraphics dg;
 
+static int screenWidth = 1920;
+static int screenHeight = 1080;
+
 //FluidMotionReceiver fmr;
 //***************************************************************
 // called to set everything up
@@ -31,9 +34,9 @@ static PGraphics dg;
 void setup()
 {
   if(!ROTATE_DISPLAY)
-  { size(600,800,P2D); }
+  { size(screenWidth,screenHeight,P2D); }
   else
-  { size(800,600,P2D); }//we are dealing with a 800x600 native res projector
+  { size(screenHeight,screenWidth,P2D); }
   if (!DEBUG_MODE) {
     noCursor();
   }
@@ -49,7 +52,7 @@ void setup()
   gridTiles.loadWithXML(xml);
   
   tileChanger = new RadialTileChanger(gridTiles,new float[]{0,0});
-  leafs = new LeafSystem(50, "leafSystem.png", 75);
+  leafs = new LeafSystem(50, "leafSystem.png", 200);
   leafs.spawn();
   
   imgTree = loadImage("treeoverlay.png");

@@ -1,7 +1,6 @@
 static final boolean leafs_fall = true;
 
-static final float fullScreenFallTime = 4.0;
-static final float tumblesPerFullScreenFall = 5;
+static final float fullScreenFallTime = 6.0;
 static final float maxRotationalVelocity = 5*TWO_PI/fullScreenFallTime;
 static final float[] rotationDirections = {-1,1};
 
@@ -37,6 +36,8 @@ class LeafSystem {
     float rotationalVelocity;
     color c;
 
+    float fallingVelocity;
+
     float leaf_bound;
 
 
@@ -50,7 +51,8 @@ class LeafSystem {
         g = 128 + random(r - 128);
       }
       return color(r,g,0);
-    }    
+    }
+    
     Leaf(Point ipt, PImage iimg) {
       pt = ipt;
       img = iimg;
@@ -86,7 +88,7 @@ class LeafSystem {
       }
       
       if (falling) {
-        pt.y += dt*(800.0/fullScreenFallTime);
+        pt.y += dt*fallingVelocity;
         rad += dt*rotateDir*rotationalVelocity;
         if ((leaf_bound + leaf_img_sz/2) < pt.y) {
           offScreen = true;
@@ -98,6 +100,7 @@ class LeafSystem {
         if (p < s) {
           falling = true;
           rotationalVelocity = maxRotationalVelocity*random(.2,1);
+          fallingVelocity = (screenHeight/fullScreenFallTime)*random(.4,1);
         }
       }
       
@@ -139,7 +142,7 @@ class LeafSystem {
     fileName = dataPath(FileName);
     loadLeafSystemFile();
     
-    pg = createGraphics(600, 800);
+    pg = createGraphics(screenWidth, screenHeight);
     pg.beginDraw();
     if (null == img) {
       pg.background(color(0),0);
@@ -161,12 +164,18 @@ class LeafSystem {
     img.loadPixels();
     for (int y = 0; y < img.width; y++) {
       for (int x = 0; x < img.height; x++) {
-        if (0 != img.pixels[y *img.width + x]) {
-          //println("adding spawnpoint " + i + "," + j);
-          leafSpawnPts.add(new Point(x, y)); // I don't know why these are reveresed...
+        if (0 != img.get(x,y)) {
+          if ((0 == x) && (0 == y))
+          {
+            println("adding spawnpoint " + x + "," + y + " RGB = " + hex(img.get(x,y)));
+          }
+          leafSpawnPts.add(new Point(x, y));
         }
       }
     }
+
+    println(this.getClass() + ": Number of ingested leaf spawn points " + leafSpawnPts.size());
+
     if (0 == leafSpawnPts.size()) {
       leafSpawnPts.add(new Point(width, height));
     }
