@@ -1,3 +1,5 @@
+static final boolean leafs_fall = true;
+
 static final float fullScreenFallTime = 4.0;
 static final float tumblesPerFullScreenFall = 5;
 static final float maxRotationalVelocity = 5*TWO_PI/fullScreenFallTime;
@@ -79,6 +81,9 @@ class LeafSystem {
     }
     
     void update(float dt) {
+      if (!leafs_fall) {
+        return;
+      }
       
       if (falling) {
         pt.y += dt*(800.0/fullScreenFallTime);
@@ -111,6 +116,8 @@ class LeafSystem {
   float radius;
 
   String fileName;
+
+  boolean spawn_leaves;
 
   void drawBackgroundImg() {
     pg.pushMatrix();
@@ -164,6 +171,13 @@ class LeafSystem {
       leafSpawnPts.add(new Point(width, height));
     }
     println(this.getClass() + ": Number of ingested leaf spawn points " + leafSpawnPts.size());
+
+    if (0 == leafSpawnPts.size()) {
+      println(this.getClass() + ": No leaf spawn points, not spawning leaves.");
+      spawn_leaves = false;
+    } else {
+      spawn_leaves = true;
+    }
   }
   
   // load leaf file from disk and ingest it.
@@ -239,6 +253,11 @@ class LeafSystem {
   }
   
   Leaf spawnLeaf() {
+    if (!spawn_leaves)
+    {
+      return null;
+    }
+
     Point p = getRandomSpawnPoint();
     PImage leafImg = leafImages[int(random(leafImages.length))];
     Leaf newLeaf = new Leaf(p, leafImg);
@@ -248,6 +267,10 @@ class LeafSystem {
   }
   
   void spawn() {
+    if (!spawn_leaves)
+    {
+      return;
+    }
     
     if(leafSpawnPts == null || leafSpawnPts.size() <1)
     {
@@ -261,6 +284,11 @@ class LeafSystem {
   
   //render the leaf system
   void draw() {
+    if (!spawn_leaves)
+    {
+      return;
+    }
+
     dg.pushMatrix();
 
     if (ROTATE_DISPLAY) {
@@ -285,7 +313,13 @@ class LeafSystem {
   
   
   void update(float dt) {
-    for (int i=0; i < leaves.length; i++) {
+     if (!spawn_leaves ||
+        !leafs_fall)
+    {
+      return;
+    }
+
+   for (int i=0; i < leaves.length; i++) {
       leaves[i].update(dt);
       if (leaves[i].offScreen) {
         leaves[i] = spawnLeaf();
