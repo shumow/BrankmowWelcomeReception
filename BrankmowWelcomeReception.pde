@@ -187,7 +187,7 @@ void mouseMoved() {
 
 void saveScreenToPicture()
 {
-  dg.save("screenCap/fallingLeaves-"+year()+"-"+month()+"-"+day()+":"+hour()+":"+minute()+":"+second()+":"+millis() +".png");
+  dg.save("screenCap/fallingLeaves-"+year()+"-"+month()+"-"+day()+"_"+hour()+"_"+minute()+"_"+second()+"_"+millis() +".png");
 }
 
 
