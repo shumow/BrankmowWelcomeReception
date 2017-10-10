@@ -237,4 +237,10 @@ void keyPressed()
       crop_line ^= true;
     }
   }
+  
+  if (DEBUG_MODE) {
+    if ('=' == key) {
+      picFrame.next();
+    } 
+  }
 }
