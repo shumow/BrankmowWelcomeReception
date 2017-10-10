@@ -27,6 +27,8 @@ static PGraphics dg;
 static int screenWidth = 1920;
 static int screenHeight = 1080;
 
+PictureFrame picFrame;
+
 //FluidMotionReceiver fmr;
 //***************************************************************
 // called to set everything up
@@ -57,6 +59,8 @@ void setup()
   
   imgTree = loadImage("treeoverlay.png");
   imgSilhouette = loadImage("treesilhouette.png");
+  
+  picFrame = new PictureFrame();
   
   println("classname: " + super.getClass().getSuperclass());
 //  fmr = new FluidMotionReceiver(this,"videoFluidSyphon");
@@ -121,10 +125,12 @@ void draw()
   gridTiles.update(secondsSinceLastUpdate);
   leafs.update(secondsSinceLastUpdate);
 //  if(!tileChanger.isComplete())
-    tileChanger.update(secondsSinceLastUpdate);
+  tileChanger.update(secondsSinceLastUpdate);
+  picFrame.update(secondsSinceLastUpdate);
 //  else
 //    tileChanger.reset();
   gridTiles.draw();
+  picFrame.draw();
   lastEndTick = millis();
   
   if (display_tree) {
@@ -150,6 +156,10 @@ void draw()
     dg.stroke(255,0,0);
     dg.line(cropX,0,cropX,height);
     dg.popStyle();
+  }
+  
+  if (null != picFrame) {
+    picFrame.draw();
   }
 }
 
