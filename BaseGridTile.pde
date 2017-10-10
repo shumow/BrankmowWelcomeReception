@@ -60,9 +60,24 @@ class BaseGridTile implements XMLLoadable
     //println("added " + subTiles.size() + " subtiles");
   }
   
+  public GridPos getPosition()
+  {
+    return new GridPos(position[0], position[1]);
+  }
+  
   @Override public boolean equals(Object o) 
   {
     return (o instanceof BaseGridTile) && (this.position[0] == ((BaseGridTile) o).position[0]) && (this.position[1] == ((BaseGridTile) o).position[1]);
+  }
+  
+  @Override public int hashCode()
+  {
+    // Right now I'm just using a hypothetical max dimension of 2^(2^4) + 1 (Fermat-4)
+    // a better solution would be to make the GridPos aware of the actual dimensions of
+    // the grid that we are using.
+    int R = (1 << 16) + 1;
+    
+    return ((this.position[0] + R) + 2*R*(this.position[1]+R));
   }
   
   //***************************************************************

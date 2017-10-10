@@ -19,7 +19,7 @@ class TileChanger
   {
     switchedTiles.clear();
     unswitchedTiles.clear();
-    for(BaseGridTile bgt : this.tiler.getGenTiles())
+    for(BaseGridTile bgt : this.tiler.getGenTiles().values())
     {
       unswitchedTiles.add(bgt.position);
     } 

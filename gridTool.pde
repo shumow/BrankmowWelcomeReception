@@ -49,7 +49,7 @@ class GridTool extends GridTiler
   void draw()
   {
     super.draw();
-    int graphRange[] = {-20,20};
+    int graphRange[] = {-25,25};
     dg.pushMatrix();
     dg.translate(origin[0],origin[1]);
     //draw x axis markers
