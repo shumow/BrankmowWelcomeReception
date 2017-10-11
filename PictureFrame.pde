@@ -73,6 +73,9 @@ class PictureFrame {
 
      if (picture_frame_sequential_advance) {
        curImage++;
+       if (picFrameImgFileCache.size() <= curImage) {
+         curImage = 0;
+       }
      } else {
        curImage = int(random(picFrameImgFileCache.size()));       
      }
@@ -94,10 +97,10 @@ class PictureFrame {
      }
      
      changeTime = random(minPicTime, maxPicTime);
-     t = 0.0;
 
      showing_picture = true;
    }
+   t = 0.0;
   }
 
   void update(float dt) {
