@@ -241,6 +241,9 @@ void keyPressed()
   if (DEBUG_MODE) {
     if ('=' == key) {
       picFrame.next();
-    } 
+    }
+    if ('+' == key) {
+      picture_frame_sequential_advance ^= true;
+    }
   }
 }

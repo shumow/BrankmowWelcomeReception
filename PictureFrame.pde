@@ -4,6 +4,8 @@ int yLowerOffset = 25;
 int xUpperOffset = 25;
 int yUpperOffset = 25;
 
+boolean picture_frame_sequential_advance = false;
+
 class PictureFrame {
 
   static final int xLowerOffset = 250;
@@ -33,6 +35,8 @@ class PictureFrame {
   int wFrame;
   int hFrame;  
 
+  int curImage;
+
   boolean showing_picture;
  
   float t;
@@ -54,6 +58,8 @@ class PictureFrame {
     
     picFrameImgFileCache = new ArrayList<PImage>();
     
+    curImage = -1;
+    
     loadImages();
   }
 
@@ -63,8 +69,13 @@ class PictureFrame {
      showing_picture = false;
      changeTime = random(minNoPicTime, maxNoPicTime);
    } else {
-     int curImage = int(random(picFrameImgFileCache.size()));
      float scl = 1.0;
+
+     if (picture_frame_sequential_advance) {
+       curImage++;
+     } else {
+       curImage = int(random(picFrameImgFileCache.size()));       
+     }
      
      imgCur = picFrameImgFileCache.get(curImage);
 
