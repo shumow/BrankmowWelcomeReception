@@ -11,8 +11,14 @@ class PictureFrame {
 
   static final int xUpperOffset = 25;
   static final int yUpperOffset = 25;
+    
+  static final float minNoPicTime = 5.0;
+  static final float maxNoPicTime = 20.0;
   
-  static final float change_probability = 0.05;
+  static final float minPicTime = 25.0;
+  static final float maxPicTime = 50.0;
+
+  static final float fadeTime = 4.0;
   
   int cX;
   int cY;
@@ -31,6 +37,8 @@ class PictureFrame {
  
   float t;
  
+  float changeTime;
+ 
   public PictureFrame() {
     wFrame = screenWidth/2 - (xLowerOffset + xUpperOffset);
     hFrame = screenHeight/2 - (yLowerOffset + yUpperOffset);
@@ -42,6 +50,7 @@ class PictureFrame {
     showing_picture = false;
 
     t = 0.0;
+    changeTime = random(minNoPicTime, maxNoPicTime);
     
     picFrameImgFileCache = new ArrayList<PImage>();
     
@@ -52,6 +61,7 @@ class PictureFrame {
    if (showing_picture) {
      imgCur = null;
      showing_picture = false;
+     changeTime = random(minNoPicTime, maxNoPicTime);
    } else {
      int curImage = int(random(picFrameImgFileCache.size()));
      float scl = 1.0;
@@ -70,34 +80,30 @@ class PictureFrame {
      } else {
        wImg = imgCur.width;
        hImg = imgCur.height;
-     }    
+     }
+     
+     changeTime = random(minPicTime, maxPicTime);
+     t = 0.0;
 
      showing_picture = true;
    }
   }
 
- void update(float dt) {
+  void update(float dt) {
 
-   boolean change = false;
+    boolean change = false;
    
-   t += dt;
+     t += dt;
    
-   if (1.0 < t) {
-     float r = random(1);
-     
-     if (r <= change_probability) {
-       change = true;
+     if (changeTime <= t) {
+       this.next();
      }
-     
-     t -= 1.0;
-   }
    
-   if (change) {
-     this.next();
-   }
  } 
  
  void draw() {
+ 
+ 
    if (DEBUG_MODE) {
      pushStyle();
      stroke(#FF0000);
@@ -106,9 +112,19 @@ class PictureFrame {
      popStyle();
    }
    
+   
    if (showing_picture) {
+
+     float a = 255.0;
+     if (t < fadeTime) {
+       a = 255.0*t/fadeTime;
+     } else if ((changeTime - t) < fadeTime) {
+       a = -255.0*(t - changeTime)/fadeTime;
+     }
+
      pushStyle();
        imageMode(CENTER);
+       tint(255, a);
        image(imgCur, cX, cY, wImg, hImg);
      popStyle();
    }
